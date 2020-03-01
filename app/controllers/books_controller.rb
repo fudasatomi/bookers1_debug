@@ -11,10 +11,12 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
+    @book= Book.find(params[:id])
   end
 
   # GET /books/1/edit
   def edit
+    @book= Book.find(params[:id])
   end
 
   # POST /books
@@ -24,6 +26,7 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to @book, notice: 'Book was successfully created.'
     else
+      @books = Book.all
       render :index
     end
   end
